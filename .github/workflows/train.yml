@@ -2,9 +2,9 @@ name: Train Model
 
 on:
   push:
-    paths:
-      - 'backend/train_model.py'
-      - 'backend/data/**'
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   train:
@@ -23,10 +23,14 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r backend/requirements.txt
+        run: |
+          cd backend
+          pip install -r requirements.txt
 
       - name: Train model
-        run: python backend/train_model.py
+        run: |
+          cd backend
+          python train_model.py
 
       - name: Commit updated model
         run: |
