@@ -2,15 +2,16 @@ from pathlib import Path
 import pickle
 import joblib
 import pandas as pd
+import os
 from sklearn.compose import ColumnTransformer
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
-
-DATA_FILE = Path("data/synthetic_banking_transactions.csv")
-ARTIFACT_DIR = Path("artifacts")
+BASE_DIR = os.path.dirname(__file__)
+DATA_FILE = os.path.join(BASE_DIR, "data", "synthetic_banking_transactions.csv")
+ARTIFACT_DIR = Path(BASE_DIR) / "artifacts"
 ARTIFACT_DIR.mkdir(exist_ok=True)
 MODEL_FILE = ARTIFACT_DIR / "fraud_model.joblib"
 
