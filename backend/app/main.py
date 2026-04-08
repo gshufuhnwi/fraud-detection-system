@@ -92,20 +92,41 @@ LOG_FILE = LOG_DIR / "predictions.jsonl"
 # - transformed_feature_names
 # - threshold
 # =========================================================
-if not MODEL_PATH.exists():
-    raise RuntimeError(f"Model file not found: {MODEL_PATH}")
+pipeline = None
+feature_columns = []
+transformed_feature_names = []
+threshold = 0.5
+preprocessor = None
+tree_model = None
+explainer = None
 
-bundle = joblib.load(MODEL_PATH)
+print("🚀 Starting FastAPI app...")
 
-pipeline = bundle["pipeline"]
-feature_columns = bundle["feature_columns"]
-transformed_feature_names = bundle["transformed_feature_names"]
-threshold = bundle.get("threshold", 0.5)
+try:
+    if MODEL_PATH.exists():
+        print(f"📦 Loading model from {MODEL_PATH}")
 
-preprocessor = pipeline.named_steps["preprocessor"]
-tree_model = pipeline.named_steps["model"]
-explainer = shap.TreeExplainer(tree_model)
+        bundle = joblib.load(MODEL_PATH)
 
+        pipeline = bundle.get("pipeline")
+        feature_columns = bundle.get("feature_columns", [])
+        transformed_feature_names = bundle.get("transformed_feature_names", [])
+        threshold = bundle.get("threshold", 0.5)
+
+        if pipeline:
+            preprocessor = pipeline.named_steps.get("preprocessor")
+            tree_model = pipeline.named_steps.get("model")
+
+            if tree_model:
+                explainer = shap.TreeExplainer(tree_model)
+
+        print("✅ Model loaded successfully")
+
+    else:
+        print(f"⚠️ Model not found at {MODEL_PATH}")
+
+except Exception as e:
+    print("❌ Model loading failed:", e)
 
 # =========================================================
 # HELPERS
