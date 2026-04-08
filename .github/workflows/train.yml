@@ -32,6 +32,6 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
-          git add backend/artifacts/fraud_pipeline.joblib
+          git add backend/artifacts/fraud_model.joblib
           git commit -m "Auto update model" || echo "No changes"
           git push
