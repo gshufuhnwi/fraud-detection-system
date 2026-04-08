@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual env
+venv/
+.venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs / temp
+*.log
+logs/*.log
+
+# Local secrets
+.env
+
+# Streamlit local config
+.streamlit/secrets.toml
+
+# Model training artifacts you do NOT want
+*.tmp
