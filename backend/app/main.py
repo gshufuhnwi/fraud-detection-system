@@ -12,8 +12,8 @@ import time
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 import numpy as np
-from app.bank import BankSystem
-from app.models import (
+from .bank import BankSystem
+from .models import (
     CreateAccountRequest,
     DepositWithdrawRequest,
     FraudTransactionRequest,
