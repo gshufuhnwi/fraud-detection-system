@@ -39,3 +39,9 @@ jobs:
           git add backend/artifacts/fraud_model.joblib
           git commit -m "Auto update model" || echo "No changes"
           git push
+      - name: Trigger Render Deploy
+        if: success()
+	 run: |
+           curl -X POST "$
+      {{ secrets.RENDER_DEPLOY_HOOK}}"
+       
