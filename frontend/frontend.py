@@ -8,7 +8,7 @@ import numpy as np
 # =====================================================
 # CONFIG
 # =====================================================
-API_URL = "http://127.0.0.1:8000"
+API_URL = "https://fraud-detection-system-htlb.onrender.com/predict_fraud"
 TIMEOUT = 90
 
 st.set_page_config(
