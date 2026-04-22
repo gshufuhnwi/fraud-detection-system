@@ -9,7 +9,7 @@ import numpy as np
 # CONFIG
 # =====================================================
 API_URL = "https://fraud-detection-system-htlb.onrender.com"
-TIMEOUT = 90
+TIMEOUT = 180
 
 st.set_page_config(
     page_title="FraudShield AI Platform",
